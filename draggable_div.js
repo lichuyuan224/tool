@@ -1,3 +1,4 @@
+console.log('Hello!');
 const div1 = document.createElement('div');
 div1.style.width = '170px';
 div1.style.height = '170px';
@@ -40,4 +41,16 @@ div1.addEventListener('mousemove', (e) => {
 
 div1.addEventListener('mouseup', (e) => {
   status.dragging = false;
+});
+
+div1.addEventListener('wheel', (e) => {
+  let scale = parseFloat(
+    (div1.style.transform || 'scale(1)').replace(/[^0-9.]/gi, '')
+  );
+  const size = e.wheelDelta / 1200;
+  scale += size;
+  console.log(scale);
+  if (scale >= 0.5) {
+    div1.style.transform = `scale(${scale})`;
+  }
 });
